@@ -1,0 +1,11 @@
+<h1>Edit User</h1>
+
+<form action="/users/create" method="post">
+    <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+    <input type="hidden" name="_method" value="patch">
+    Name: <input type="text" name="Name" value="<%=@user.name%>">
+    Email: <input type="text" name="Email" value="<%=@user.email%>">
+    Password: <input type="password" name="Password">
+
+    <input type='submit' value='Join'>
+</form>

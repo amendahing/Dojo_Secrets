@@ -1,0 +1,22 @@
+<h1>Log In</h1>
+
+<% if flash[:errors] %>
+  <% flash[:errors].each do |e| %>
+    <%= e %>
+  <% end %>
+<% end %>
+
+<% if current_user %>
+  <form action="/sessions/<%=current_user.id%>" method="post">
+    <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+    <input type="hidden" name="_method" value="delete">
+    <input type="submit" value="Log Out">
+  </form>
+<% end %>
+
+<form action="/login" method="post">
+    <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+    Email: <input type="text" name="Email">
+    Password: <input type="text" name="Password">
+    <input type='submit' value='Log In'>
+</form>
