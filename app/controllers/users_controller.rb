@@ -8,7 +8,17 @@ class UsersController < ApplicationController
 
     def edit
         @user = User.find(session[:id])
-        @user.update(name: params[:Name], email: params[:Email])
+    end
+
+    def update
+        @user = User.find(session[:id])
+        puts @user.name, "____________________________"
+        if @user.update(name: params[:Name], email: params[:Email])
+            redirect_to "/users/#{session[:id]}"
+        else
+            flash[:errors] = @user.errors.full_messages
+            redirect_to "/users/#{session[:id]}/edit"
+        end
     end
 
     def create
@@ -20,7 +30,11 @@ class UsersController < ApplicationController
             flash[:errors] = ["can't be blank"]
             redirect_to '/users/new'
         end
+    end
 
+    def destroy
+        User.find(session[:id]).destroy
+        redirect_to '/users/new'
     end
 
 end

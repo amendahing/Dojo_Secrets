@@ -11,6 +11,10 @@ Rails.application.routes.draw do
 
   get 'users/index'
 
+  patch 'users/:id/update' => 'users#update'
+
+  delete 'users/:id' => 'users#destroy'
+
   get 'sessions/new'
 
   post 'login' => 'sessions#create'
